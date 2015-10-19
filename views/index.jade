@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1 Please Register
+  br
+  br
+  if errors
+    .alert.alert-danger
+      for error in errors
+        p=error
+  form(action='/' method='post')
+    .form-group
+      label Email
+      input.form-control(type="email" name="email" id="email")
+    .form-group
+      label Password
+      input.form-control(type="password" name="password" id="password")
+    .form-group
+      label Confirmation
+      input.form-control(type="password" name="confirmation" id="confirmation")
+    Button(type='submit' class="btn btn-success") Register

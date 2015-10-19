@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    if username
+      h1.well Add A Student
+      br
+      br
+      if errors
+        .alert.alert-danger
+          for error in errors
+            p=error
+      form(action='/new' method='post')
+        .form-group
+          label Student Name
+          input.form-control(type="text" name="name" id="name")
+        .form-group
+          label Telephone
+          input.form-control(type="text" name="telephone" id="telephone")
+        Button(type="submit" class='btn btn-success') New Student
+

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+ if username
+  
+    h1 Student 
+    br
+    h1.well= theStudents.name
+    br
+    h1.well= theStudents.telephone
+
+
+    button(type="submit" class='btn btn-info')
+      a(href='/student') Back To Students
+
+    form(action='/'+theStudents._id +'/delete', method='post')
+      button(type="submit" class="btn btn-danger") Delete

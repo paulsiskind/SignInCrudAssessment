@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  
+  if username
+
+    h1.well Welcome #{username}
+
+    table.table.table-striped
+      thead
+        tr
+
+          th Name
+          th Telephone
+
+      tbody
+        for student in allStudents
+          tr
+            td
+              a(href='/'+student._id)= student.name
+            td= student.telephone
+
+      button(type="submit" class='btn btn-info')
+        a(href='/new') New Student
