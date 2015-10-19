@@ -19,7 +19,8 @@ router.get('/register', function(req, res, next){
 });
 
 router.get('/new', function(req, res, next){
-  res.render('new');
+  var username = req.session.username
+  res.render('new', {username: username});
 })
 
 router.get('/signout', function(req, res, next){
@@ -96,21 +97,22 @@ router.post('/signin', function(req, res, next){
 })
 
 router.post('/new', function(req, res, next){
+  var username = req.session.username
   var errors = [];
-  if(req.body.name === 0){
+  if(req.body.name == 0){
     errors.push('Name Cannot Be Blank!');
   }
-  if(req.body.telephone === 0){
+  if(req.body.telephone == 0){
     errors.push('Telephone Cannot Be Blank!');
   }
   if(errors.length){
-    res.render('new', {errors:errors});
+    res.render('new', {errors:errors, username: username});
   }
   else{
     Students.find({name: req.body.name}, function(err, data){
       if(data.length > 0){
         errors.push('Name already registered!');
-        res.render('new', {errors:errors});
+        res.render('new', {errors:errors, username: username});
       }
       else{
         Students.insert({name: req.body.name,
